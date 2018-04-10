@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a id="link1">click</a>
+
+    <div id="div1">
+        <a >link1</a>
+        <a >link2</a>
+        <a >link1</a>
+        <a >link1</a>
+    </div>
+</body>
+<script>
+    function bindEvent(elem, type, fn) {
+        elem.addEventListener(type, fn);
+    }
+
+    var a = document.getElementById('link1');
+    bindEvent(a, "click", e => {
+        // 默认行为
+        e.preventDefault();
+        alert("click");
+    })
+
+    var div1 = document.getElementById('div1');
+    var body = document.body;
+    bindEvent(div1, "click", e => {
+        // 阻止事件冒泡
+        e.stopPropagation();
+        console.log(e.target);
+    })
+    bindEvent(body, "click", e => {
+        console.log(e.target);
+    })
+</script>
+</html>
